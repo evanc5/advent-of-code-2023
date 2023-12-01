@@ -13,6 +13,17 @@
       "stopAtEntry": false
     },
     {
+      "name": "Day 02",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build02",
+      "program": "${workspaceFolder}/Day02/bin/Debug/net8.0/Day02.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Day02",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
       "name": ".NET Core Attach",
       "type": "coreclr",
       "request": "attach"
