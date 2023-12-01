@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-Part1();
+﻿Part1();
 Part2();
 
 static void Part1()
@@ -29,14 +27,12 @@ static void Part2()
     var startTime = System.Diagnostics.Stopwatch.GetTimestamp();
 
     var result = 0;
-
-    var pattern = @"([1-9]|one|two|three|four|five|six|seven|eight|nine)";
-    var rx = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
     foreach (var line in input)
     {
-        var matches = rx.Matches(line);
-        var firstDigit = ParseDigit(matches.First().Value);
-        var lastDigit = ParseDigit(matches.Last().Value);
+        var processed = ProcessLine(line);
+
+        var firstDigit = processed.First(char.IsDigit);
+        var lastDigit = processed.Last(char.IsDigit);
 
         var calibrationValue = int.Parse($"{firstDigit}{lastDigit}");
         result += calibrationValue;
@@ -47,20 +43,16 @@ static void Part2()
     System.Diagnostics.Debug.WriteLine($"Part 2: {elapsedTime}");
 }
 
-static string ParseDigit(string digit)
+static string ProcessLine(string line)  //I kind of hate this but I hate it less than a regex solution that doesn't work so I'm fine with it for now
 {
-    var result = digit switch
-    {
-        "one" => "1",
-        "two" => "2",
-        "three" => "3",
-        "four" => "4",
-        "five" => "5",
-        "six" => "6",
-        "seven" => "7",
-        "eight" => "8",
-        "nine" => "9",
-        _ => digit
-    };
-    return result;
+    line = line.Replace("one", "o1ne");
+    line = line.Replace("two", "t2wo");
+    line = line.Replace("three", "thr3ee");
+    line = line.Replace("four", "fo4ur");
+    line = line.Replace("five", "fi5ve");
+    line = line.Replace("six", "s6ix");
+    line = line.Replace("seven", "se7ven");
+    line = line.Replace("eight", "ei8ght");
+    line = line.Replace("nine", "ni9ne");
+    return line;
 }
