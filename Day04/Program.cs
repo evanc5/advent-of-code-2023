@@ -9,7 +9,15 @@ static void Part1()
     var result = 0;
     foreach (var line in input)
     {
-
+        var split = line.Split(':')[1].Split('|');
+        var winning = split[0].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var numbers = split[1].Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var matches = Enumerable.Intersect(numbers, winning);
+        var matchCount = matches.Count();
+        if (matchCount > 0)
+        {
+            result += (int)Math.Pow(2, matchCount - 1);
+        }
     }
 
     var elapsedTime = System.Diagnostics.Stopwatch.GetElapsedTime(startTime);
