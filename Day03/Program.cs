@@ -7,9 +7,27 @@ static void Part1()
     var startTime = System.Diagnostics.Stopwatch.GetTimestamp();
 
     var result = 0;
-    foreach (var line in input)
+    char[,] matrix = new char[input[0].Length, input.Length];
+    for (int y = 0; y < matrix.GetLength(1); y++)
     {
+        for (int x = 0; x < matrix.GetLength(0); x++)
+        {
+            matrix[x, y] = input[y][x];
+        }
+    }
 
+    for (int y = 0; y < matrix.GetLength(1); y++)
+    {
+        for (int x = 0; x < matrix.GetLength(0); x++)
+        {
+            var current = matrix[x, y];
+            if (current != '.' && char.IsSymbol(current))
+            {
+                //need to grab any numbers in the 8 squares adjacent, x-1 x x+1; y-1 y y+1 except x,y
+                //then need to grab contiguous numbers if any digits are found
+                //uhhhhh
+            }
+        }
     }
 
     var elapsedTime = System.Diagnostics.Stopwatch.GetElapsedTime(startTime);
